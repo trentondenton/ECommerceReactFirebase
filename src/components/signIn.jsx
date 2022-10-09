@@ -1,8 +1,6 @@
 import { useState } from 'react';
-
 import {
   signInWithGooglePopup,
-  createUserDocumentFromAuth,
   signInUserEmailPassword,
 } from '../utils/firebaseUtil';
 
@@ -17,15 +15,14 @@ const defaultFormFields = {
 export default function SignIn() {
   const signInWithGoogle = async () => {
     try {
-      const { user } = await signInWithGooglePopup();
-      await createUserDocumentFromAuth(user);
+      await signInWithGooglePopup();
     } catch (error) {
       console.error(error);
     }
   };
 
   const [formFields, setFormFields] = useState(defaultFormFields);
-  const { email, password } = formFields;
+  let { email, password } = formFields;
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -51,10 +48,6 @@ export default function SignIn() {
     }
   };
 
-  const resetFormFields = () => {
-    setFormFields(defaultFormFields);
-  };
-
   return (
     <div>
       <div className='sign-up-container'>
@@ -78,11 +71,15 @@ export default function SignIn() {
             required
           />
           <div className='buttons-container'>
-            <Button type='submit' buttonType='inverted'>
+            <Button type='submit' buttonType='default'>
               Sign In
             </Button>
-            <Button onClick={signInWithGoogle} buttonType='google'>
-              Sign in with Google
+            <Button
+              type='button'
+              onClick={signInWithGoogle}
+              buttonType='google'
+            >
+              Google Sign In
             </Button>
           </div>
         </form>

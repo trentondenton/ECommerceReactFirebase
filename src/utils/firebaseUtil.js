@@ -1,10 +1,12 @@
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signInWithPopup,
-  GoogleAuthProvider
+  signOut,
+  onAuthStateChanged
 } from "firebase/auth";
 import {
   getFirestore,
@@ -23,6 +25,7 @@ const firebaseConfig = {
   measurementId: "G-0M1QD0MRC4"
 };
 
+// eslint-disable-next-line no-unused-vars
 const firebaseApp = initializeApp(firebaseConfig);
 
 const googleProvider = new GoogleAuthProvider();
@@ -70,5 +73,9 @@ export const createUserEmailPassword = async (email, password) => {
 export const signInUserEmailPassword = async (email, password) => {
   if (!email || !password) return;
 
-  const { user } = await signInWithEmailAndPassword(auth, email, password);
+  return await signInWithEmailAndPassword(auth, email, password);
 }
+
+export const signOutUser = async () => await signOut(auth);
+
+export const onAuthStateChangeListener = (callback) => onAuthStateChanged(auth, callback);

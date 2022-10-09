@@ -1,6 +1,10 @@
 import { useState } from 'react';
 
-import { createUserEmailPassword } from '../utils/firebaseUtil';
+import {
+  createUserDocumentFromAuth,
+  createUserEmailPassword,
+} from '../utils/firebaseUtil';
+
 import FormInput from './formInput';
 import Button from './button';
 
@@ -27,7 +31,7 @@ export default function SignUp() {
     }
     try {
       const { user } = await createUserEmailPassword(email, password);
-      await user.updateProfile({ displayName });
+      await createUserDocumentFromAuth(user, { displayName });
       setFormFields(defaultFormFields);
     } catch (error) {
       console.error(error);
