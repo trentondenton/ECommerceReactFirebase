@@ -1,39 +1,28 @@
-import React from 'react';
-import { CategoryItem } from './categoryItem';
+import { useContext, useState, useEffect, Fragment } from 'react';
+import { useParams } from 'react-router-dom';
 
-export default function Category() {
-  const categories = [
-    {
-      id: 1,
-      title: 'hats',
-      imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
-    },
-    {
-      id: 2,
-      title: 'jackets',
-      imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
-    },
-    {
-      id: 3,
-      title: 'sneakers',
-      imageUrl: 'https://i.ibb.co/0jqHpnp/sneakers.png',
-    },
-    {
-      id: 4,
-      title: 'womens',
-      imageUrl: 'https://i.ibb.co/GCCdy8t/womens.png',
-    },
-    {
-      id: 5,
-      title: 'mens',
-      imageUrl: 'https://i.ibb.co/R70vBrQ/men.png',
-    },
-  ];
+import { CategoryContext } from '../../contexts/categoriesContexts';
+import ProductCard from './productCard';
+const Category = () => {
+  const { category } = useParams();
+  const { categoriesMap } = useContext(CategoryContext);
+  const [products, setProducts] = useState(categoriesMap[category]);
+
+  useEffect(() => {
+    setProducts(categoriesMap[category]);
+  }, [category, categoriesMap]);
+
   return (
-    <div className='categories-container'>
-      {categories.map(({ title, imageUrl, id }) => (
-        <CategoryItem key={id} category={{ title, imageUrl }} />
-      ))}
-    </div>
+    <Fragment>
+      <h2 className='category-title'>{category.toUpperCase()}</h2>
+      <div className='category-container'>
+        {products &&
+          products.map(product => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+      </div>
+    </Fragment>
   );
-}
+};
+
+export default Category;
