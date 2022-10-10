@@ -22,7 +22,6 @@ export const CategoryProvider = ({ children }) => {
       setCategoriesMap(categoryMap);
     };
     getCategoriesMap();
-    console.log(getCategoriesMap);
   }, []);
 
   const value = {
