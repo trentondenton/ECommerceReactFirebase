@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 
-import { CartContext } from '../contexts/cartContexts';
+import { CartContext } from '../../contexts/cartContexts';
 
-import Button from './button';
+import Button from '../customs/button';
 import CartItem from './cartItem';
 
 const CartDropdown = () => {

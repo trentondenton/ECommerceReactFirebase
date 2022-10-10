@@ -7,8 +7,8 @@ import { CartContext } from '../contexts/cartContexts';
 import { signOutUser } from '../utils/firebaseUtil';
 
 import { ReactComponent as Logo } from '../assets/logo.svg';
-import CartIcon from './cartIcon';
-import CartDropdown from './cartDropdown';
+import CartIcon from './cart/cartIcon';
+import CartDropdown from './cart/cartDropdown';
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);

@@ -3,10 +3,10 @@ import { useState } from 'react';
 import {
   createUserDocumentFromAuth,
   createUserEmailPassword,
-} from '../utils/firebaseUtil';
+} from '../../utils/firebaseUtil';
 
-import FormInput from './formInput';
-import Button from './button';
+import FormInput from '../customs/formInput';
+import Button from '../customs/button';
 
 const defaultFormFields = {
   displayName: '',
