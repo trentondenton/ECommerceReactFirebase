@@ -5,6 +5,7 @@ import {
   createUserDocumentFromAuth,
 } from '../utils/firebaseUtil';
 
+// User Reducer
 export const UserContext = createContext({
   currentUser: null,
   setCurrentUser: () => {},
@@ -14,7 +15,6 @@ export const USER_ACTION_TYPES = {
   SET_CURRENT_USER: 'SET_CURRENT_USER',
 };
 
-// User Reducer
 const userReducer = (state, action) => {
   const { type, payload } = action;
 

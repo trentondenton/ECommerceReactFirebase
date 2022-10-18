@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import { UserProvider } from './contexts/userContexts';
+import { store } from './store/store';
 import { CategoryProvider } from './contexts/categoriesContexts';
 import { CartProvider } from './contexts/cartContexts';
 import './styles/main.scss';
@@ -13,15 +14,17 @@ import "@fontsource/open-sans-condensed";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <UserProvider>
+    <Provider store={store}>
+      <BrowserRouter>
+        {/* <UserProvider> */}
         <CategoryProvider>
           <CartProvider>
             <App />
           </CartProvider>
         </CategoryProvider>
-      </UserProvider>
-    </BrowserRouter>
+        {/* </UserProvider> */}
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 
