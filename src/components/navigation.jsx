@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { selectCartItems } from '../store/cart/cartSelector';
+import { selectIsCartOpen } from '../store/cart/cartSelector';
 import { selectCurrentUser } from '../store/user/userSelector';
 import { signOutUser } from '../utils/firebaseUtil';
 
@@ -12,7 +12,7 @@ import CartDropdown from './cart/cartDropdown';
 
 const Navigation = () => {
   const currentUser = useSelector(selectCurrentUser);
-  const { isCartOpen } = useSelector(selectCartItems);
+  const isCartOpen = useSelector(selectIsCartOpen);
 
   return (
     <Fragment>
